@@ -1,21 +1,16 @@
 import React, { useRef } from 'react'
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { MailIcon } from '@heroicons/react/outline'
 
 const ContactSection = () => {
+    const { t } = useTranslation();
     const nameRef = useRef()
     const emailRef = useRef()
     const telephoneRef = useRef()
     const messageRef = useRef()
     const countryRef = useRef()
     const dioseceRef = useRef()
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     /* 
-    //     Do something here !
-    //     */
-    // }
 
     const {
         register,
@@ -29,7 +24,7 @@ const ContactSection = () => {
 
     return (
         <div className="relative mx-auto w-full py-8 md:px-24 max-w-7xl bg-white text-gray-700">
-            <h1 className="text-center py-9 font-serif font-bold sm:text-3xl uppercase">WE'RE HAPPY TO HEAR FROM YOU</h1>
+            <h1 className="text-center py-9 font-serif font-bold sm:text-3xl uppercase">{t("WEHAPPYHEAR")}</h1>
             <div className="grid grid-cols-2">
                 <div className="order-3 md:order-2 col-span-full md:col-span-1 py-5 md:py-10 px-6">
                     <form action="" className="mx-auto max-w-xl space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -154,7 +149,7 @@ const ContactSection = () => {
                             <button
                                 type="submit"
                                 className="py-2.5 px-6 rounded-lg bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black text-base text-white font-semibold uppercase">
-                                Send Message
+                                {t("SendMessage")}
                             </button>
                         </div>
                     </form>
@@ -162,10 +157,9 @@ const ContactSection = () => {
 
                 <div className="order-2 md:order-3 col-span-full md:col-span-1 py-5 md:py-10 px-6">
                     <div className="mx-auto max-w-xl flex flex-col space-y-5">
-                        <h2 className="text-4xl font-oswald uppercase font-sans">Contact us</h2>
+                        <h2 className="text-4xl font-oswald uppercase font-sans">{t("Contactus")}</h2>
                         <p className="text-sm text-gray-500">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis unde, voluptatibus nemo molestiae iure, repudiandae quaerat ipsam, labore sed dolorem nisi odit at esse ullam suscipit quidem necessitatibus aut modi.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis unde, voluptatibus nemo molestiae iure, repudiandae quaerat ipsam, labore sed dolorem nisi odit at esse ullam suscipit quidem necessitatibus aut modi.
+                            {t("contactMessage")}
                         </p>
                         <a href="#mail" className="inline-flex items-center text-sm text-blue-400 font-semibold hover:text-blue-500">
                             <MailIcon className="mr-2 w-5 text-gray-400" />
