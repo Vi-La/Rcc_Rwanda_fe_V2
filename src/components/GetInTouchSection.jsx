@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const GetInTouchSection = () => {
+    const { t } = useTranslation();
   const data=[
     {
         id:1,
@@ -51,39 +53,39 @@ const GetInTouchSection = () => {
 return (
     <div className="bg-[#EFEFEF] mx-auto px-4 py-20 md:px-44">
         <div className='text-center pb-12'>
-            <h1 className='font-serif font-bold sm:text-3xl uppercase'>GET IN TOUCH WITH OUR TEAM</h1>
+            <h1 className='font-serif font-bold sm:text-3xl uppercase'>{t("GETINTOUCH")}</h1>
         </div>
         <div className="flex flex-wrap -mx-1 lg:-mx-4">
             {data.map((item)=>(
             <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4" key={item.id}>
                 <article className="overflow-hidden rounded-lg shadow-lg">
-                    <a href="#">
+                    <a href="#m">
                         <img alt="Placeholder" className="block h-auto w-full" src={item.image} />
                     </a>
                     <header className="flex flex-col items-left justify-between leading-tight p-2 md:p-4">
                         <h1 className="text-lg font-serif">
-                            <a className="no-underline hover:underline text-black" href="#">
+                            <a href="#m" className="no-underline hover:underline text-black">
                                 {item.title}
                             </a>
                         </h1>
                         <span className="text-lg font-serif">
-                            <a className="no-underline hover:underline text-black" href="#">
+                            <a className="no-underline hover:underline text-black" href="#j">
                                 {item.title1}
                             </a>
                         </span>
                         <span className="text-lg font-serif">
-                            <a className="no-underline hover:underline text-black" href="#">
+                            <a className="no-underline hover:underline text-black" href="#jk">
                                 {item.title2}
                             </a>
                         </span>
                     </header>
                     <footer className="flex flex-col items-left justify-between leading-none p-2 md:p-4">
-                        <a className="flex  items-left no-underline hover:underline text-black" href="#">
+                        <a className="flex  items-left no-underline hover:underline text-black" href="#kj">
                             <span className="ml-2 text-sm">
                                 {item.name1}
                             </span>
                         </a>
-                        <a className="flex  items-left no-underline hover:underline text-black" href="#">
+                        <a className="flex  items-left no-underline hover:underline text-black" href="#k">
                             <span className="ml-2 text-sm">
                                 {item.name2}
                             </span>

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+import Zoom from 'react-reveal/Zoom';
 
 const CommunitySection = () => {
+    const { t } = useTranslation();
     const data=[
         {
             id:1,
@@ -69,10 +72,11 @@ const CommunitySection = () => {
     return (
         <div className="container my-12 mx-auto px-4 py-8 md:px-24">
             <div className='text-center pb-12'>
-                <h1 className='font-serif font-bold sm:text-3xl uppercase'>OUR COMMUNITY</h1>
+                <h1 className='font-serif font-bold sm:text-3xl uppercase'>{t("OURCOMMUNITY")}</h1>
             </div>
             <div className="flex flex-wrap -mx-1 lg:-mx-4">
                 {data.map((item)=>(
+                    <Zoom>
                 <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4" key={item.id}>
                     <article className="overflow-hidden rounded-lg shadow-lg">
                         <a href="#">
@@ -95,6 +99,7 @@ const CommunitySection = () => {
                         </footer>
                     </article>
                 </div>
+                </Zoom>
                 ))}
                 
 

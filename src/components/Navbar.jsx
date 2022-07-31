@@ -1,9 +1,11 @@
 import React from 'react'
 import Logo from './../assets/logo.png'
 import { Link, NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 const Navbar = () => {
+    const { t } = useTranslation();
     return (
         <div>
             <nav className="bg-[#FF3D3D] border-gray-200 px-2 sm:px-4 py-4">
@@ -15,7 +17,7 @@ const Navbar = () => {
                         <button
                             type="button"
                             className="text-white bg-transparent border focus:ring-4 focus:outline-none font-sans focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 uppercase">
-                            <Link to="/register">Register/Login</Link>
+                            <Link to="/register">{t("Register/Login")}</Link>
                         </button>
                     </div>
                     <div className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-cta">
@@ -28,7 +30,7 @@ const Navbar = () => {
                                         return '';
                                     }}
                                 >
-                                    Home
+                                    {t("Home")}
                                 </NavLink>
                             </li>
                             <li className="block py-2 pr-4 pl-3 text-lg text-gray-200 hover:text-gray-50 font-sans border-b border-gray-50 md:hover:bg-transparent md:border-0 md:p-0">
@@ -39,7 +41,7 @@ const Navbar = () => {
                                         return '';
                                     }}
                                 >
-                                    News
+                                    {t("News")}
                                 </NavLink>
                             </li>
                             <li className="block py-2 pr-4 pl-3 text-lg text-gray-200 hover:text-gray-50 font-sans border-b border-gray-50 md:hover:bg-transparent md:border-0 md:p-0">
@@ -50,7 +52,7 @@ const Navbar = () => {
                                         return '';
                                     }}
                                 >
-                                    Chart Rooms
+                                    {t("ChartRooms")}
                                 </NavLink>
                             </li>
                             <li className="block py-2 pr-4 pl-3 text-lg text-gray-200 hover:text-gray-50 font-sans border-b border-gray-50 md:hover:bg-transparent md:border-0 md:p-0">
@@ -61,7 +63,7 @@ const Navbar = () => {
                                         return '';
                                     }}
                                 >
-                                    History
+                                    {t("History")}
                                 </NavLink>
                             </li>
                             <li className="block py-2 pr-4 pl-3 text-lg text-gray-200 hover:text-gray-50 font-sans border-b border-gray-50 md:hover:bg-transparent md:border-0 md:p-0">
@@ -72,7 +74,7 @@ const Navbar = () => {
                                         return '';
                                     }}
                                 >
-                                    Prayer Groups
+                                    {t("PrayerGroups")}
                                 </NavLink>
                             </li>
                             <li className="block py-2 pr-4 pl-3 text-lg text-gray-200 border-b font-sans border-white hover:text-gray-50 md:hover:bg-transparent md:border-0 md:p-0">
@@ -83,7 +85,7 @@ const Navbar = () => {
                                         return '';
                                     }}
                                 >
-                                    Gallery
+                                    {t("Gallery")}
                                 </NavLink>
                             </li>
                         </ul>

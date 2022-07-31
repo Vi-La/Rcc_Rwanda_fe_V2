@@ -1,6 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+import Zoom from 'react-reveal/Zoom';
+
 
 const Testimonial = () => {
+    const { t } = useTranslation();
     const data = [
         {
             id:1,
@@ -41,9 +45,10 @@ const Testimonial = () => {
     return (
         <section className="testimonials relative py-20 min-h-fit overflow-hidden">
             <div className="container mx-auto px-24 h-full">
-                <h2 className="mb-5 max-w-2xl mx-auto font-serif font-bold text-center text-6xl sm:text-3xl text-white pb-16">TESTIMONIALS FROM OUR COMMUNITY</h2>
+                <h2 className="mb-5 max-w-2xl mx-auto font-serif font-bold text-center text-6xl sm:text-3xl text-white pb-16 uppercase">{t("TESTIMONIALS")}</h2>
                 <div className="flex flex-wrap -m-5">
                     {data.map((item)=>(
+                        <Zoom>
                     <div className="w-full md:w-1/3 p-5" key={item.id}>
                         <div className="h-full p-0.5 bg-gradient-cyan transform hover:-translate-y-3 rounded-10 transition ease-out duration-1000" >
                             <div className="h-full px-7 py-8 bg-white rounded-lg">
@@ -54,6 +59,7 @@ const Testimonial = () => {
                             </div>
                         </div>
                     </div>
+                    </Zoom>
                     ))}
                 </div>
             </div>

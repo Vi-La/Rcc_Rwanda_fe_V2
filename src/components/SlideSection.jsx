@@ -1,6 +1,9 @@
 import React from 'react'
 import Slider from './Slider/Slider'
+import { useTranslation } from 'react-i18next';
+
 const Home = () => {
+    const { t } = useTranslation();
     return (
         
         <div className='flex'>
@@ -8,7 +11,7 @@ const Home = () => {
         <Slider />
             </div>
             <div className='w-2/5 justify-center text-2xl py-5 items-center uppercase text-center'>
-                <h1 className='font-serif font-bold'>Lesson of the day</h1>
+                <h1 className='font-serif font-bold'>{t("Lessonoftheday")}</h1>
                 <div className='py-4'>
                     <img className='px-4' src="https://cdn.pixabay.com/photo/2022/07/08/01/17/mother-7308238__340.jpg" alt="" />
                     <h5 className='text-lg text-left p-4 font-sans'>
