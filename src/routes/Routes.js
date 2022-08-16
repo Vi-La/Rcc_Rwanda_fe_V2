@@ -6,6 +6,7 @@ import News from '../pages/News';
 import ChartRoom from '../pages/ChartRoom';
 import History from '../pages/History';
 import PrayerGroup from '../pages/PrayerGroup';
+import NewsMore from '../pages/NewsMore';
 
 function MainRoutes() {
   return (
@@ -14,6 +15,7 @@ function MainRoutes() {
         <Route path="/register" exact element={<Register />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/news" element={<News />} />
+        <Route path="/news/:id" element={<NewsMore />} />
         <Route path="/chart" element={<ChartRoom />} />
         <Route path="/history" element={<History />} />
         <Route path="/prayer" element={<PrayerGroup />} />
