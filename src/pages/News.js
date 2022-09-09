@@ -3,8 +3,10 @@ import Navbar from '../components/Navbar'
 import Pagination from '../components/Pagination'
 import newsDummy from '../utils/dummyNews.json'
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 
 const News = () => {
+    const { t } = useTranslation();
     const [currentPage, setCurrentpage] = useState(1)
     const [postsPerPage] = useState(3)
 
@@ -17,7 +19,7 @@ const News = () => {
         <>
             <Navbar />
             <div className="flex flex-col px-4 lg:px-40 py-10">
-                <h1 className="text-lg lg:text-3xl font-bold">Latest news</h1>
+                <h1 className="text-lg lg:text-3xl font-bold">{t("latestNews")}</h1>
                 <hr className="mt-3"/>
                 {
                     currentPosts.map((news, index) => {
