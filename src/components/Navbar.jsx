@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from './../assets/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { HiChevronDown } from 'react-icons/hi'
 
 
 const Navbar = () => {
     const { t } = useTranslation();
+    const [open, setOpen] = useState(false)
+    const handleDropDown = () => setOpen(!open);
     return (
         <div>
             <nav className="bg-[#FF3D3D] border-gray-200 px-2 sm:px-4 py-4">
@@ -62,7 +65,9 @@ const Navbar = () => {
                                         if (navData.isActive) return 'text-black';
                                         return '';
                                     }}
+                                    onClick={handleDropDown}
                                 >
+                                    <HiChevronDown className='absolute ml-14 w-11' size="1.7rem" />
                                     {t("History")}
                                 </NavLink>
                             </li>
@@ -87,6 +92,61 @@ const Navbar = () => {
                                 >
                                     {t("Gallery")}
                                 </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={!open ? 'hidden' : 'w-56 mt-[30%] px-6 shadow  absolute bg-[#FF3D3D] z-10 ml-[40%]'}>
+                        <ul className="space-y-3" onClick={handleDropDown}>
+                            <li className="font-medium">
+                                <h1 className="flex text-white items-center transform transition-colors duration-200">
+                                    Dioceses
+                                </h1>
+                            </li>
+                            <hr className="text-white" />
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-black hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Kigali
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Kabgayi
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Ruhengeri
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Kibungo
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Gikongoro
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Cyangugu
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Byumba
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Butare
+                                </Link>
+                            </li>
+                            <li className="font-medium">
+                                <Link to="#link" className="flex text-white hover:text-black items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white uppercase">
+                                    Nyundo
+                                </Link>
                             </li>
                         </ul>
                     </div>
