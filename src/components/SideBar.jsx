@@ -3,10 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const SideBar = () => {
     return (
-
-
-
-        <div className="flex-col fixed pt-[3vh] lg:pt-[11vh] min-h-screen lg:w-[30vh] bg-white  border-r">
+        <div className="flex-col fixed pt-[3vh] lg:pt-[11vh] min-h-screen lg:w-[23vh] bg-white  border-r">
             <ul className="flex flex-col py-4">
                 <li>
                     <NavLink to="dashdash" className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
@@ -28,26 +25,26 @@ const SideBar = () => {
                 </li>
                 <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800">
                     <NavLink
-                        to="leader"
+                        to="user"
                         className={(navData) => {
                             if (navData.isActive) return 'text-blue-700';
                             return '';
                         }}
                     >
                         <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i className="bx bx-drink"></i></span>
-                        <span className="text-base font-sans">Leaders</span>
+                        <span className="text-base font-sans">Users</span>
                     </NavLink>
                 </li>
                 <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800">
                     <NavLink
-                        to="history"
+                        to="leader"
                         className={(navData) => {
                             if (navData.isActive) return 'text-blue-700';
                             return '';
                         }}
                     >
                         <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i className="bx bx-chat"></i></span>
-                        <span className="text-base font-sans">History</span>
+                        <span className="text-base font-sans">Leader_Belige</span>
                     </NavLink>
                 </li>
                 <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800">
@@ -108,7 +105,7 @@ const SideBar = () => {
                         }}
                     >
                         <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i className="bx bx-user"></i></span>
-                        <span className="text-base font-sans">Report</span>
+                        <span className="text-base font-sans">Gallery</span>
                     </NavLink>
                 </li>
                 <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800">
@@ -124,3 +121,4 @@ const SideBar = () => {
 }
 
 export default SideBar
+

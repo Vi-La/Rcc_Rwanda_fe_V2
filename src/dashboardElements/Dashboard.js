@@ -1,19 +1,14 @@
 import React, { useState } from 'react'
-import { FaEllipsisV } from 'react-icons/fa'
+// import { FaEllipsisV } from 'react-icons/fa'
 
 
 const Dashboard = () => {
   const [createCohortModel, setCreateCohortModel] = useState(false);
   const [deleteCohortModel, setDeleteCohortModel] = useState(false);
-  const [showActions, setShowActions] = useState(false)
 
   const removeModel = () => {
     let newState = !createCohortModel;
     setCreateCohortModel(newState);
-  }
-
-  const handleShowActions = () => {
-    setShowActions(!showActions)
   }
 
   const removeDeleteModel = () => {

@@ -1,11 +1,14 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
+import { Zoom } from 'react-reveal';
 
 export default function ChristianLifeSection() {
   const { t } = useTranslation();
   return (
-    <div className='px-44 text-center py-20'>
-      <h1 className='pb-12 sm:text-2xl font-serif uppercase font-bold'> {t("CHRISTIANLIFE")} </h1>
+    <div className='xl:px-44 px-10 text-center py-20'>
+      <Zoom>
+        <h1 className='pb-12 md:text-3xl text-xl font-serif uppercase font-bold'> {t("CHRISTIANLIFE")} </h1>
+      </Zoom>
       <p className='text-left text-lg'>{t("message")}</p>
       <button
         type="button"

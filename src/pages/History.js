@@ -5,26 +5,26 @@ const History = () => {
     return (
         <>
             <Navbar />
-            <div className='justify-center w-screen  block'>
-                <div className="text-center pt-6">
+            <div className='justify-center w-screen block'>
+                <div className="hidden xl:flex text-center pt-6">
                     <div className="pb-8 animate-marquee">
-                        <span class="mx-4 text-4xl">History of Charismatique in Rwanda from 1998 until now.</span>
+                        <span className="mx-4 text-4xl">History of Charismatique in Rwanda from 1998 until now.</span>
                     </div>
                 </div>
-                <div className='flex p-12'>
-                    <div class="flex-none w-32 mr-4">
-                        <div className='flex text-center p-2'> <div className='rounded-full w-6 h-5.5 mr-3 bg-green-500 text-white'>1</div>2022</div>
-                        <div className='flex text-center p-2'> <div className='rounded-full w-6 h-5.5 mr-3 bg-gray-300'>2</div>2021</div>
-                        <div className='flex text-center p-2'> <div className='rounded-full w-6 h-5.5 mr-3 bg-gray-300'>3</div>2020</div>
-                        <div className='flex text-center p-2'> <div className='rounded-full w-6 h-5.5 mr-3 bg-gray-300'>4</div>1999</div>
-                        <div className='flex text-center p-2'> <div className='rounded-full w-6 h-5.5 mr-3 bg-gray-300'>5</div>1998</div>
+                <div className='block xl:flex p-12'>
+                    <div className="flex-none xl:block xl:w-32 flex w-4 pb-8 mr-4">
+                        <div className='flex text-center p-2 text-[#FF3D3D] cursor-pointer'>2022</div>
+                        <div className='flex text-center p-2 cursor-pointer'>2021</div>
+                        <div className='flex text-center p-2 cursor-pointer'>2020</div>
+                        <div className='flex text-center p-2 cursor-pointer'>1999</div>
+                        <div className='flex text-center p-2 cursor-pointer'>1998</div>
                     </div>
-                    <div class="flex-initial w-full mr-6">
+                    <div className="flex-initial w-full mr-6">
                         <div className=" flex items-center pb-12">
-                            <div class="text-black py-1 md:px-6 md:mx-2">
-                                <h4 class="text-xl font-semibold">Kigali Diocese</h4>
+                            <div className="text-black py-1 md:px-6 md:mx-2">
+                                <h4 className="text-xl font-semibold">Kigali Diocese</h4>
                                 <hr className="text-gray-600" />
-                                <p class="text-sm pt-4">
+                                <p className="text-sm pt-4">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -133,7 +133,7 @@ const History = () => {
                         </div>
                     </div>
                     <div className="flex-initial w-1/2">
-                        <img className='object-cover' src="https://eglisecatholiquerwanda.org/kn/local/cache-vignettes/L500xH667/arton10-75b5e.jpg?1642441850" alt="" />
+                        <img className='object-cover' src="https://eglisecatholiquerwanda.org/kn/local/cache-vignettes/L500xH667/arton10-75b5e.jpg?1642441850" alt="historyImage" />
                         <div className='text-center py-2 text-sm'>
                             <h1>Myr Smaragde MBONYINTEGE</h1>
                         </div>

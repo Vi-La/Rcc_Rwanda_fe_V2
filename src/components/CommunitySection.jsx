@@ -1,109 +1,84 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import { axiosRequest } from '../api';
 import Zoom from 'react-reveal/Zoom';
+const comm_URL = "community"
 
 const CommunitySection = () => {
     const { t } = useTranslation();
-    const data=[
-        {
-            id:1,
-            image:"https://cdn.pixabay.com/photo/2022/07/04/04/37/musician-7300353__340.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:2,
-            image:"https://cdn.pixabay.com/photo/2022/05/22/16/34/woman-7213852__340.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:3,
-            image:"https://cdn.pixabay.com/photo/2016/10/15/05/02/girls-1741925__340.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:4,
-            image:"https://cdn.pixabay.com/photo/2015/07/17/22/43/student-849821__480.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:5,
-            image:"https://cdn.pixabay.com/photo/2018/04/01/17/00/mother-and-daughter-3281388__480.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:6,
-            image:"https://cdn.pixabay.com/photo/2022/07/08/01/17/mother-7308238__480.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:7,
-            image:"https://cdn.pixabay.com/photo/2015/07/17/22/43/student-849821__480.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:8,
-            image:"https://cdn.pixabay.com/photo/2018/04/01/17/00/mother-and-daughter-3281388__480.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-        {
-            id:9,
-            image:"https://cdn.pixabay.com/photo/2022/07/08/01/17/mother-7308238__480.jpg",
-            title:"Community name",
-            name:"Diocese ....",
-            profile:"https://picsum.photos/32/32/?random"
-        },
-    ]
+    const [Data, setData] = useState([]);
+
+    console.log("<<<>>>", Data)
+
+    const GetCommunity = () => {
+        axiosRequest.get(comm_URL)
+            .then(response => {
+                const result = response.data;
+                const { status, message, data } = result;
+                if (status !== 'SUCCESS') {
+                    setData(data)
+                }
+                else {
+                    setData(data)
+                }
+            })
+            .catch(error => {
+                if (error.code !== "ERR_NETWORK") {
+                    // Notify(error.response.data.message, "error");
+                }
+                else {
+                    //   Notify(error.message, "error");
+                }
+            })
+    }
+
+    useEffect(() => {
+        GetCommunity();
+    }, [])
+
     return (
         <div className="container my-12 mx-auto px-4 py-8 md:px-24">
-            <div className='text-center pb-12'>
-                <h1 className='font-serif font-bold sm:text-3xl uppercase'>{t("OURCOMMUNITY")}</h1>
-            </div>
-            <div className="flex flex-wrap -mx-1 lg:-mx-4">
-                {data.map((item)=>(
-                    <Zoom>
-                <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4" key={item.id}>
-                    <article className="overflow-hidden rounded-lg shadow-lg">
-                        <a href="#">
-                            <img alt="Placeholder" className="block h-auto w-full" src={item.image} />
-                        </a>
-                        <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                            <h1 className="text-lg">
-                                <a className="no-underline hover:underline text-black" href="#">
-                                    {item.title}
-                                </a>
-                            </h1>
-                        </header>
-                        <footer className="flex items-center justify-between leading-none p-2 md:p-4">
-                            <a className="flex items-center no-underline hover:underline text-black" href="#">
-                                <img alt="Placeholder" className="block rounded-full" src={item.profile} />
-                                <p className="ml-2 text-sm">
-                                    {item.name}
-                                </p>
-                            </a>
-                        </footer>
-                    </article>
+            <Zoom>
+                <div className='text-center pb-12'>
+                    <h1 className='font-serif font-bold xl:text-3xl text-xl uppercase'>{t("OURCOMMUNITY")}</h1>
                 </div>
-                </Zoom>
-                ))}
-                
-
-            </div>
+                <div className="flex flex-wrap -mx-1 lg:-mx-4">
+                    {Data?.map((item) => (
+                        <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4" key={item._id}>
+                            <article className="overflow-hidden rounded-lg shadow-lg">
+                                <a href="#link">
+                                    <img alt="Placeholder" className="block h-auto w-full object-cover" src={item.image} />
+                                </a>
+                                <header className="block flex-wrap items-center justify-between leading-tight p-2 md:p-4">
+                                    <span className="text-lg font-serif">
+                                        <a className="no-underline hover:underline text-black text-2xl" href="#j">
+                                            {item.name}
+                                        </a>
+                                    </span>
+                                    <h1 className="text-lg">
+                                        <a className="no-underline hover:underline text-black" href="#link">
+                                            {item.diocese}
+                                        </a>
+                                    </h1>
+                                    <span className="text-lg font-serif">
+                                        <a className="no-underline hover:underline text-black" href="#jk">
+                                            {item.member}
+                                        </a>
+                                    </span>
+                                </header>
+                                <footer className="flex flex-col items-left justify-between leading-none p-2 md:p-4">
+                                    <div className="flex  items-left no-underline hover:underline text-black">
+                                        <a href={item.fbLink}> <span className="ml-2 text-sm">Facebook</span></a>
+                                    </div>
+                                    <div className="flex  items-left no-underline hover:underline text-black" >
+                                        <a href={item.twLink}> <span className="ml-2 text-sm">Twitter</span></a>
+                                    </div>
+                                </footer>
+                            </article>
+                        </div>
+                    ))}
+                </div>
+            </Zoom>
         </div>
     )
 }

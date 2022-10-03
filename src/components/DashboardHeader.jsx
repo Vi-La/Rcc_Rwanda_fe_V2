@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from './../assets/logo.png'
 import { Link } from 'react-router-dom';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import SideBar from './SideBar';
 
 
 const DashboardHeader = () => {
+    const [nav, setNav] = useState(false);
+    const handleClick = () => setNav(!nav);
     return (
         <div className="flex-1 flex z-10 fixed w-screen flex-col">
             <nav className="px-10 flex justify-between bg-white h-16 border-b-2">
+                <div className="flex -ml-6 pt-4 pr-2 lg:hidden">
+                    <div onClick={handleClick}>
+                        {!nav ? (
+                            <MenuIcon className="w-7 text-black" />
+                        ) : (
+                            <XIcon className="w-7 text-black" />
+                        )}
+                    </div>
+                </div>
                 <ul className="flex items-center">
                     <Link to="/">
                         <li className="h-9 w-9 ">
@@ -23,7 +36,7 @@ const DashboardHeader = () => {
                     </li>
                 </ul>
                 <ul className="flex items-center">
-                    <li className="pr-6">
+                    <li className="pr-6 hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -47,6 +60,14 @@ const DashboardHeader = () => {
                     </li>
                 </ul>
             </nav>
+            <ul
+                onClick={handleClick}
+                className={
+                    !nav ? 'hidden' : 'bg-white cursor-pointer lg:hidden'
+                }
+            >
+                <SideBar style="flex pt-2 h-[92%]" />
+            </ul>
         </div>
     )
 }

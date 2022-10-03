@@ -5,15 +5,10 @@ import { FaFacebook, FaTwitter, FaInstagramSquare, FaEdit, FaTrash } from 'react
 const Prayers = () => {
   const [createCohortModel, setCreateCohortModel] = useState(false);
   const [deleteCohortModel, setDeleteCohortModel] = useState(false);
-  const [showActions, setShowActions] = useState(false)
 
   const removeModel = () => {
     let newState = !createCohortModel;
     setCreateCohortModel(newState);
-  }
-
-  const handleShowActions = () => {
-    setShowActions(!showActions)
   }
 
   const removeDeleteModel = () => {
@@ -156,10 +151,10 @@ const Prayers = () => {
       <div className="bg-[#F5F5F5] pb-10 min-h-screen lg:ml-44">
         <div className="flex items-left px-7 lg:px-28 pt-14 pb-8">
           <div className="space-x-8">
-            <button className="text-white font-serif font-semibold bg-blue-700 hover:bg-transparent border border-blue-700 hover:text-black focus:ring-4 focus:outline-none rounded-lg text-base uppercase px-5 py-2.5 mt-8 text-center mr-3 md:mr-0 cursor-pointer" onClick={removeModel}>Prayer Group +</button>
+            <button className="text-white font-serif font-semibold bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black focus:ring-4 focus:outline-none rounded-lg text-base uppercase px-5 py-2.5 mt-8 text-center mr-3 md:mr-0 cursor-pointer" onClick={removeModel}>Prayer Group +</button>
           </div>
         </div>
-        <div className="px-3 md:px-28">
+        <div className="px-3 md:px-6 lg:px-28">
           <div className="bg-white shadow-lg px-5 py-8 rounded-md w-full  lg:w-full ">
             <div className=" flex items-center justify-between pb-6">
               <div>
@@ -168,7 +163,7 @@ const Prayers = () => {
             </div>
             <div>
               <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
+                <div className="inline-block lg:min-w-full shadow rounded-lg overflow-hidden">
                   <table className="min-w-full leading-normal">
                     <thead>
                       <tr>
@@ -202,7 +197,7 @@ const Prayers = () => {
                       {data.map((item) => (
                         <tr key={item.id}>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <img className="w-10 h-10 rounded-full shadow-lg" src={item.image} alt="Bonnie" />
+                            <img className="w-10 h-10 rounded-full shadow-lg object-cover" src={item.image} alt="Bonnie" />
                           </td>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div className="flex items-center">
@@ -237,10 +232,10 @@ const Prayers = () => {
                           </td>
                           <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white text-lg">
                             <div className='flex'>
-                              <div className="cursor-pointer mr-2 text-blue-700" onClick={() => { handleShowActions() }}>
+                              <div className="cursor-pointer mr-2 text-blue-700">
                                 <FaEdit />
                               </div>
-                              <div className="cursor-pointer text-[#FF3D3D]" onClick={() => { handleShowActions() }}>
+                              <div className="cursor-pointer text-[#FF3D3D]">
                                 <FaTrash />
                               </div>
                             </div>
