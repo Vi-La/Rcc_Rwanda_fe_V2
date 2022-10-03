@@ -4,7 +4,7 @@ import Backend from 'i18next-xhr-backend';
 import { initReactI18next } from 'react-i18next';
 
 const availableLanguages = ['en', 'fr', 'kn'];
-const fallbackLng = ['en'];
+const fallbackLng = ['kn'];
 i18n
   .use(Backend)
   .use(LanguageDetector)
