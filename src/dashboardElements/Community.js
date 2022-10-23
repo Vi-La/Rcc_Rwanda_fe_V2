@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaFacebook, FaTwitter, FaInstagramSquare, FaEdit, FaTrash } from 'react-icons/fa'
 import { ToastContainer } from 'react-toastify';
 import { axiosRequest } from '../api';
+import { Button, Spinner } from 'react-bootstrap';
 import Notify from "../functions/Notify";
 import Axios from 'axios'
 import { getUser } from '../utils/Common';
@@ -274,11 +275,24 @@ const Community = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button className='py-2 w-[40%] md:w-1/3 bg-transparent rounded border border-[#31699C] font-sans text-sm text-gray-900' onClick={(e) => removeModel(e.preventDefault())}>Cancel</button>
-                <button className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border text-white border-gray-800 hover:bg-green-500 focus:ring-4 focus:outline-none'
-                  onClick={handleSubmite}
-                >
-                  Save
-                </button>
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border text-white border-gray-800 hover:bg-green-500 focus:ring-4 focus:outline-none'
+                    onClick={handleSubmite}
+                  >
+                    Save
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -302,14 +316,25 @@ const Community = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button className='py-2 w-[40%] md:w-1/3 bg-transparent rounded border border-gray-800 font-sans text-sm' onClick={(e) => removeDeleteModel(e.preventDefault())}>Cancel</button>
-
-                <button
-                  className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
-
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button
+                    className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -416,12 +441,25 @@ const Community = () => {
                     setUpdateNewsModel(false)
                   }}>Cancel
                 </button>
-                <button
-                  className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border border-[#31699C] text-white hover:bg-green-500 focus:ring-4 focus:outline-none'
-                  onClick={handleUpdate}
-                >
-                  Update
-                </button>
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button
+                    className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border border-[#31699C] text-white hover:bg-green-500 focus:ring-4 focus:outline-none'
+                    onClick={handleUpdate}
+                  >
+                    Update
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -430,13 +468,13 @@ const Community = () => {
       {/* =========================== End::  updateTeamModel =============================== */}
 
       <div className="bg-[#F5F5F5] pb-10 min-h-screen lg:ml-44">
-          <div className="flex items-left px-7 lg:px-28 pt-14 pb-8">
-        {user[0]?.userType === "Admin" ? (
+        <div className="flex items-left px-7 lg:px-28 pt-14 pb-8">
+          {user[0]?.userType === "Admin" ? (
             <div className="space-x-8">
               <button className="text-white font-serif font-semibold bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black focus:ring-4 focus:outline-none rounded-lg text-base uppercase px-5 py-2.5 mt-8 text-center mr-3 md:mr-0 cursor-pointer" onClick={removeModel}>Community +</button>
             </div>
-        ) : ""}
-          </div>
+          ) : ""}
+        </div>
         <div className="px-3 md:px-6 lg:px-28">
           <div className="bg-white shadow-lg px-5 py-8 rounded-md w-full  lg:w-full ">
             <div className=" flex items-center justify-between pb-6">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SideBar from '../components/SideBar'
 import { Routes, Route } from 'react-router-dom';
 import DashboardHeader from '../components/DashboardHeader'
@@ -13,10 +13,12 @@ import Report from '../dashboardElements/Gallery';
 import Lesson from '../dashboardElements/LessonOfDay';
 
 const DashRoutes = () => {
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
   return (
     <div className='flex flex-col min-h-screen'>
       <DashboardHeader />
-      <SideBar />
+      <SideBar toggle={handleClick} style="hidden lg:flex"/>
       <Routes>
         <Route path="/news" element={<News />} />
         <Route path="/community" element={<Community />} />
