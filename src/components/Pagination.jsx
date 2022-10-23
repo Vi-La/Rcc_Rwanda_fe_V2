@@ -1,7 +1,4 @@
 import React from "react";
-// import prev from '../../assets/svgs/prev.svg';
-// import next from '../../assets/svgs/next.svg';
-
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     const pageNumbers = []
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {

@@ -4,12 +4,12 @@ import { Routes, Route } from 'react-router-dom';
 import DashboardHeader from '../components/DashboardHeader'
 import Dashboard from '../dashboardElements/Dashboard';
 import News from '../dashboardElements/News';
-import History from '../dashboardElements/History';
+import Leader from '../dashboardElements/Leaders';
 import Community from '../dashboardElements/Community';
-import Leaders from '../dashboardElements/Leaders';
+import Users from '../dashboardElements/Users';
 import Prayer from '../dashboardElements/Prayers';
 import Messages from '../dashboardElements/Messages';
-import Report from '../dashboardElements/Report';
+import Report from '../dashboardElements/Gallery';
 import Lesson from '../dashboardElements/LessonOfDay';
 
 const DashRoutes = () => {
@@ -21,8 +21,8 @@ const DashRoutes = () => {
         <Route path="/news" element={<News />} />
         <Route path="/community" element={<Community />} />
         <Route path="/dashdash" element={<Dashboard />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/leader" element={<Leaders />} />
+        <Route path="/leader" element={<Leader />} />
+        <Route path="/user" element={<Users />} />
         <Route path="/message" element={<Messages />} />
         <Route path="/prayer" element={<Prayer />} />
         <Route path="/report" element={<Report />} />

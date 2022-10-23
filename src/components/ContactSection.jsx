@@ -1,43 +1,90 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { MailIcon } from '@heroicons/react/outline'
+import { Zoom } from 'react-reveal';
+import { ToastContainer } from "react-toastify";
+import Notify from "../functions/Notify";
+import { axiosRequest } from '../api/index'
+const Contact_URL = "message"
 
 const ContactSection = () => {
     const { t } = useTranslation();
-    const nameRef = useRef()
-    const emailRef = useRef()
-    const telephoneRef = useRef()
-    const messageRef = useRef()
-    const countryRef = useRef()
-    const dioseceRef = useRef()
+
+    const [fullName, setFullName] = useState("")
+    const [country, setCountry] = useState("")
+    const [diosece, setDiosece] = useState("")
+    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
+    const [message, setMessage] = useState("")
+
+    const onSubmit = () => {
+        const Credentials = { fullName, email, message, phone, country, diosece }
+        axiosRequest.post(Contact_URL, Credentials)
+            .then(response => {
+                const result = response.data;
+                // Notify(result.message, "success");
+                const { status, message, data } = result;
+                if (status !== 'SUCCESS') {
+                    setFullName(" ");
+                    setCountry(" ")
+                    setDiosece(" ")
+                    setEmail(" ");
+                    setMessage(" ");
+                    setPhone(" ")
+
+                }
+                else {
+                    console.log(message)
+                }
+            })
+            .catch(error => {
+                if (error.code !== "ERR_NETWORK") {
+                    // Notify(error.response.data.message, "error");
+                }
+                else {
+                    // Notify(error.message, "error");
+                }
+            })
+    }
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-        reset,
     } = useForm();
-    const onSubmit = () => {
-        reset();
-    };
 
     return (
+        <>
+         <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         <div className="relative mx-auto w-full py-8 md:px-24 max-w-7xl bg-white text-gray-700">
-            <h1 className="text-center py-9 font-serif font-bold sm:text-3xl uppercase">{t("WEHAPPYHEAR")}</h1>
+            <Zoom>
+                <h1 className="text-center py-9 font-serif font-bold md:text-3xl text-xl uppercase">{t("WEHAPPYHEAR")}</h1>
+            </Zoom>
             <div className="grid grid-cols-2">
                 <div className="order-3 md:order-2 col-span-full md:col-span-1 py-5 md:py-10 px-6">
                     <form action="" className="mx-auto max-w-xl space-y-4" onSubmit={handleSubmit(onSubmit)}>
                         <div>
                             <label htmlFor="name" className="sr-only">Name</label>
                             <input
-                                ref={nameRef}
                                 type="text"
                                 {...register('name', { required: 'Name is required' })}
                                 id="name"
                                 name="name"
                                 placeholder="Name"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
                             />
                         </div>
                         <div>
@@ -50,7 +97,6 @@ const ContactSection = () => {
                         <div>
                             <label htmlFor="email" className="sr-only">Email</label>
                             <input
-                                ref={emailRef}
                                 type="email"
                                 {...register('email', {
                                     required: 'Email is required',
@@ -63,6 +109,8 @@ const ContactSection = () => {
                                 name="email"
                                 placeholder="Email Address"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -74,13 +122,14 @@ const ContactSection = () => {
                         </div>
                         <div>
                             <input
-                                ref={countryRef}
-                                type="text"
+                                 type="text"
                                 {...register('country', { required: 'Country is required' })}
                                 id="country"
                                 name="country"
                                 placeholder="Country"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
                             />
                         </div>
                         <div>
@@ -92,13 +141,14 @@ const ContactSection = () => {
                         </div>
                         <div>
                             <input
-                                ref={telephoneRef}
-                                type="number"
-                                {...register('number', { required: 'Telephone number is required' })}
+                                 type="number"
+                                // {...register('number', { required: 'Telephone number is required' })}
                                 id="telephone"
                                 name="telephone"
                                 placeholder="telephone number"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                value={phone}
+                                 onChange={(e) => setPhone(e.target.value)}
                             />
                         </div>
                         <div>
@@ -110,13 +160,14 @@ const ContactSection = () => {
                         </div>
                         <div>
                             <input
-                                ref={dioseceRef}
-                                type="text"
+                                 type="text"
                                 {...register('diosece', { required: 'Diosece is required' })}
                                 id="diosece"
                                 name="diosece"
                                 placeholder="Diosece"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                                value={diosece}
+                                 onChange={(e) => setDiosece(e.target.value)}
                             />
                         </div>
                         <div>
@@ -128,7 +179,6 @@ const ContactSection = () => {
                         </div>
                         <div className="col-span-full">
                             <textarea
-                                ref={messageRef}
                                 name="message"
                                 {...register('message', { required: "It can't be empty" })}
                                 id="message"
@@ -136,6 +186,8 @@ const ContactSection = () => {
                                 rows="4"
                                 placeholder="Let know more from you?"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FF3D3D] focus:border-[#FF3D3D] block w-full p-2.5"
+                                value={message}
+                                 onChange={(e) => setMessage(e.target.value)}
                             ></textarea>
                         </div>
                         <div>
@@ -187,6 +239,7 @@ const ContactSection = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 export default ContactSection
