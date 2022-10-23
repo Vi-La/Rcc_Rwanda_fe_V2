@@ -3,6 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagramSquare, FaEdit, FaTrash } from 'react
 import { axiosRequest } from '../api';
 import Axios from 'axios'
 import { getUser } from '../utils/Common';
+import { Button, Spinner } from 'react-bootstrap';
 
 const leader_URL = "leader"
 
@@ -174,8 +175,8 @@ const History = () => {
 
   return (
     <>
-        {/* =========================== Start:: CreateCohortModel =============================== */}
-        <div className={`min-h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 ${createCohortModel === true ? 'block' : 'hidden'}`}>
+      {/* =========================== Start:: CreateCohortModel =============================== */}
+      <div className={`min-h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 ${createCohortModel === true ? 'block' : 'hidden'}`}>
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className='font-bold text-sm text-center w-11/12 uppercase'>
@@ -261,11 +262,24 @@ const History = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button className='py-2 w-[40%] md:w-1/3 bg-transparent rounded border border-[#31699C] font-sans text-sm text-gray-900' onClick={(e) => removeModel(e.preventDefault())}>Cancel</button>
-                <button className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border text-white border-gray-800 hover:bg-green-500 focus:ring-4 focus:outline-none'
-                  onClick={handleSubmite}
-                >
-                  Save
-                </button>
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border text-white border-gray-800 hover:bg-green-500 focus:ring-4 focus:outline-none'
+                    onClick={handleSubmite}
+                  >
+                    Save
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -289,14 +303,25 @@ const History = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button className='py-2 w-[40%] md:w-1/3 bg-transparent rounded border border-gray-800 font-sans text-sm' onClick={(e) => removeDeleteModel(e.preventDefault())}>Cancel</button>
-
-                <button
-                  className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
-
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button
+                    className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -403,12 +428,25 @@ const History = () => {
                     setUpdateNewsModel(false)
                   }}>Cancel
                 </button>
-                <button
-                  className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border border-[#31699C] text-white hover:bg-green-500 focus:ring-4 focus:outline-none'
-                  onClick={handleUpdate}
-                >
-                  Update
-                </button>
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button
+                    className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border border-[#31699C] text-white hover:bg-green-500 focus:ring-4 focus:outline-none'
+                    onClick={handleUpdate}
+                  >
+                    Update
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -418,11 +456,11 @@ const History = () => {
 
       <div className="bg-[#F5F5F5] pb-10 min-h-screen lg:ml-44">
         <div className="flex items-left px-7 lg:px-28 pt-14 pb-8">
-        {user[0]?.userType === "Admin" ? (
-          <div className="space-x-8">
-            <button className="text-white font-serif font-semibold bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black focus:ring-4 focus:outline-none rounded-lg text-base uppercase px-5 py-2.5 mt-8 text-center mr-3 md:mr-0 cursor-pointer" onClick={removeModel}>Leaders +</button>
-          </div>
-        ):""}
+          {user[0]?.userType === "Admin" ? (
+            <div className="space-x-8">
+              <button className="text-white font-serif font-semibold bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black focus:ring-4 focus:outline-none rounded-lg text-base uppercase px-5 py-2.5 mt-8 text-center mr-3 md:mr-0 cursor-pointer" onClick={removeModel}>Leaders +</button>
+            </div>
+          ) : ""}
         </div>
         <div className="px-3 md:px-6 lg:px-28">
           <div className="bg-white shadow-lg px-5 py-8 rounded-md w-full  lg:w-full ">
@@ -499,17 +537,17 @@ const History = () => {
                           <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white text-lg">
                             <div className='flex'>
                               <div className="cursor-pointer mr-2 text-blue-700"
-                               onClick={() => removeUpdateModel(setFormData(item), setId(item._id))}
-                               >
+                                onClick={() => removeUpdateModel(setFormData(item), setId(item._id))}
+                              >
                                 <FaEdit />
                               </div>
                               {user[0]?.userType === "Admin" ? (
-                              <div className="cursor-pointer text-[#FF3D3D]"
-                              onClick={() => { removeDeleteModel(SetRowData(item), setId(item._id), setDelete(true)) }}
-                              >
-                                <FaTrash />
-                              </div>
-                              ):""}
+                                <div className="cursor-pointer text-[#FF3D3D]"
+                                  onClick={() => { removeDeleteModel(SetRowData(item), setId(item._id), setDelete(true)) }}
+                                >
+                                  <FaTrash />
+                                </div>
+                              ) : ""}
                             </div>
                           </td>
                         </tr>

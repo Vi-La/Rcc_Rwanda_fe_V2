@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import { axiosRequest } from '../api';
 import { useNavigate } from 'react-router';
 import { setUserSession } from '../utils/Common';
+import { Button, Spinner } from 'react-bootstrap';
 
 const register_URL = "users"
 const Login_URL = 'users/login'
@@ -68,9 +69,9 @@ const Register = () => {
             setUserSession(res.data.token, res.data.user)
             const userInfo = res.data.user[0].userType
             console.log("res.data.token, res.data.user", userInfo)
-            if(userInfo === "Admin" || "Belige") {
+            if (userInfo === "Admin" || "Belige") {
                 navigate("/dashboard")
-            }else{
+            } else {
                 navigate("/")
             }
         })
@@ -254,20 +255,46 @@ const Register = () => {
                                     </div>
                                 </>)}
                                 {isSignup && (<>
-                                <button
-                                    type="submit"
-                                    className="w-1/2 text-white bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-lg text-base uppercase px-5 py-2.5 text-center">
-                                    Register
-                                </button>
+                                    {loading ? (
+                                        <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                                            <Spinner
+                                                as="span"
+                                                variant="light"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="false"
+                                                animation="border" />
+                                            Processing...
+                                        </Button>
+                                    ) : (
+                                        <button
+                                            type="submit"
+                                            className="w-1/2 text-white bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-lg text-base uppercase px-5 py-2.5 text-center">
+                                            Register
+                                        </button>
+                                    )}
                                 </>)}
                                 {!isSignup && (<>
-                                <button
-                                    type="submit"
-                                    className="w-1/2 text-white bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-lg text-base uppercase px-5 py-2.5 text-center"
-                                    onClick={handleLogin}
-                                    >
-                                    Login
-                                </button>
+                                    {loading ? (
+                                        <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                                            <Spinner
+                                                as="span"
+                                                variant="light"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="false"
+                                                animation="border" />
+                                            Processing...
+                                        </Button>
+                                    ) : (
+                                        <button
+                                            type="submit"
+                                            className="w-1/2 text-white bg-[#FF3D3D] hover:bg-transparent border border-[#FF3D3D] hover:text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-lg text-base uppercase px-5 py-2.5 text-center"
+                                            onClick={handleLogin}
+                                        >
+                                            Login
+                                        </button>
+                                    )}
                                 </>)}
                                 <div className="text-sm font-light text-gray-500">
                                     <span className="font-medium text-primary-600 cursor-pointer" onClick={switchMode}>

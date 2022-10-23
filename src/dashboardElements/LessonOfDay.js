@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaTrash, FaEdit } from 'react-icons/fa'
 import { ToastContainer } from 'react-toastify';
 import { axiosRequest } from '../api';
+import { Button, Spinner } from 'react-bootstrap';
 import Axios from 'axios'
 import Notify from "../functions/Notify";
 const Message_URL = "lesson"
@@ -230,11 +231,24 @@ const LessonOfDay = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button className='py-2 w-[40%] md:w-1/3 bg-transparent rounded border border-[#31699C] font-sans text-sm text-gray-900' onClick={(e) => removeModel(e.preventDefault())}>Cancel</button>
-                <button className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border text-white border-gray-800 hover:bg-green-500 focus:ring-4 focus:outline-none'
-                  onClick={handleSubmite}
-                >
-                  Save
-                </button>
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border text-white border-gray-800 hover:bg-green-500 focus:ring-4 focus:outline-none'
+                    onClick={handleSubmite}
+                  >
+                    Save
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -258,13 +272,25 @@ const LessonOfDay = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button className='py-2 w-[40%] md:w-1/3 bg-transparent rounded border border-gray-800 font-sans text-sm' onClick={(e) => removeDeleteModel(e.preventDefault())}>Cancel</button>
-
-                <button
-                  className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button
+                    className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -331,13 +357,25 @@ const LessonOfDay = () => {
                     setUpdateNewsModel(false)
                   }}>Cancel
                 </button>
-                <button
-                  className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border border-[#31699C] text-white hover:bg-green-500 focus:ring-4 focus:outline-none'
-                  onClick={handleUpdate}
-                >
-                  Update
-                </button>
-
+                {loading ? (
+                  <Button variant="dark" disabled className='w-[40%] md:w-1/2'>
+                    <Spinner
+                      as="span"
+                      variant="light"
+                      size="sm"
+                      role="status"
+                      aria-hidden="false"
+                      animation="border" />
+                    Processing...
+                  </Button>
+                ) : (
+                  <button
+                    className='py-2 w-[40%] md:w-1/3 rounded  bg-[#31699C] hover:bg-transparent border border-[#31699C] text-white hover:bg-green-500 focus:ring-4 focus:outline-none'
+                    onClick={handleUpdate}
+                  >
+                    Update
+                  </button>
+                )}
               </div>
             </form>
           </div>
